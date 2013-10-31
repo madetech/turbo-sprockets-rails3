@@ -11,4 +11,5 @@ Dir[File.expand_path('../turbo-sprockets/sprockets_overrides/*.rb', __FILE__)].e
   require f
 end
 
+require 'turbo-sprockets/helpers'
 require 'turbo-sprockets/railtie'
