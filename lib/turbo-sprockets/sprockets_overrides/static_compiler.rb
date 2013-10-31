@@ -79,7 +79,7 @@ if defined?(Sprockets::StaticCompiler)
 
       def write_sources_manifest(source_digests)
         FileUtils.mkdir_p(@manifest_path)
-        File.open("#{@manifest_path}/sources_manifest.yml", 'wb') do |f|
+        File.open(TurboSprockets.get_source_manifest_path(@manifest_path), 'wb') do |f|
           YAML.dump(source_digests, f)
         end
       end

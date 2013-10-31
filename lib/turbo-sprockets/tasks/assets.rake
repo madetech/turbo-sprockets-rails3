@@ -42,7 +42,7 @@ namespace :assets do
     assets = Rails.application.config.assets.digests.to_a.flatten.map do |asset|
       [asset, "#{asset}.gz"]
     end.flatten
-    assets + %w(manifest.yml sources_manifest.yml)
+    assets + (%w(manifest.yml) << TurboSprockets.get_source_manifest_filename)
   end
 
   desc "Compile all the assets named in config.assets.precompile"

@@ -101,6 +101,10 @@ You can also compile assets on your local machine, and commit the compiled asset
 
 I've automated this process in a Rake task for my own projects. The task creates a deployment repo at `tmp/heroku_deploy` so that you can keep working while deploying, and it also rebases and amends the assets commit to keep your repo's history from growing out of control. You can find the deploy task in a gist at https://gist.github.com/3802355. Save this file to `lib/tasks/deploy.rake`, and make sure you have added a `heroku` remote to your repo. You will now be able to run `rake deploy` to deploy your app to Heroku.
 
+#### Compiling Assets for a specific RAILS_ENV
+
+Supplying an RAILS_ENV to the precompile task will generate (and read from) an env specific sources manifest
+
 ## Debugging
 
 If you would like to view debugging information in your terminal during the `assets:precompile` task, add the following lines to the bottom of `config/environments/production.rb`:

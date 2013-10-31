@@ -154,7 +154,7 @@ module ApplicationTests
       manifest = "#{app_path}/public/assets/manifest.yml"
 
       digests = YAML.load_file("#{app_path}/public/assets/manifest.yml")
-      sources = YAML.load_file("#{app_path}/public/assets/sources_manifest.yml")
+      sources = YAML.load_file("#{app_path}/public/assets/#{TurboSprockets.get_source_manifest_filename}")
 
       assert_match(/application-([0-z]+)\.js/,  digests["application.js"])
       assert_match(/application-([0-z]+)\.css/, digests["application.css"])

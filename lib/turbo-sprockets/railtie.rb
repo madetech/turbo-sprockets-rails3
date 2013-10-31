@@ -15,17 +15,20 @@ module TurboSprockets
 
       manifest_dir = config.assets.manifest || File.join(Rails.public_path, config.assets.prefix)
       digests_manifest = File.join(manifest_dir, "manifest.yml")
-      sources_manifest = get_source_manifest(manifest_dir)
+      sources_manifest = File.join(TurboSprockets.get_source_manifest_path(manifest_dir))
       config.assets.digests        = (File.exist?(digests_manifest) && YAML.load_file(digests_manifest)) || {}
       config.assets.source_digests = (File.exist?(sources_manifest) && YAML.load_file(sources_manifest)) || {}
 
       # Clear digests if loading previous manifest format
       config.assets.digests = {} if config.assets.digests[:digest_files]
     end
+  end
 
-    def get_source_manifest(manifest_dir, filename="sources_manifest.yml")
-      filename = ENV['RAILS_ENV'] ? "#{ENV['RAILS_ENV'].downcase}_#{filename}" : filename
-      File.join(manifest_dir, "filename")
-    end
+  def get_source_manifest_path(manifest_dir, filename="sources_manifest.yml")
+    manifest_dir.join get_source_manifest_filename(filename)
+  end
+
+  def get_source_manifest_filename(filename="sources_manifest.yml")
+    ENV['RAILS_ENV'] ? "#{ENV['RAILS_ENV'].downcase}_#{filename}" : filename
   end
 end
